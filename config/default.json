@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "",
+  "db": "postgres://postgres:369258@localhost:5432/cms"
+}
