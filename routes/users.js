@@ -9,6 +9,7 @@ const router = express.Router();
 const { validate } = require('../validation/userValidate');
 const {generateAuthToken} = require('../JWT/token');
 const { User } = require('../models');
+const { Employee } = require('../models');
 
 
 
@@ -28,7 +29,7 @@ router.get('/me', auth,async (req, res) => {
 
 
 });
-router.get('/all',admin ,async (req, res) => {
+router.get('/all' ,async (req, res) => {
     try {
         const user = await User.findAll();
         res.json({ user });
@@ -38,12 +39,13 @@ router.get('/all',admin ,async (req, res) => {
     }
 
 });
-router.get('/:email', [admin],async (req, res) => {
+router.get('/:email',async (req, res) => {
     try {  //search for user
         const user = await User.findAll({
             where: {
                 email: req.params.email
-            }
+            },
+            include:[Employee]
         });
         //send data to client
         res.json({ user });
@@ -68,7 +70,7 @@ router.post('/customer', async (req, res) => {
         // const salt = await bcrypt.genSalt(10);
         // password = await bcrypt.hash(req.body.password, salt);
         //Save user in DB
-        role=3;
+        // role=3;
       const  user = await User.create({ firstName, lastName, email, phone, password, role });
 
   const token =await generateAuthToken(email,role);
@@ -106,7 +108,7 @@ router.post('/admin',admin, async (req, res) => {
     }        // //generate auth token
   
 });
-router.post('/employee',admin, async (req, res) => {
+router.post('/employee', async (req, res) => {
     //Check validation + return 400
     let {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -114,15 +116,17 @@ router.post('/employee',admin, async (req, res) => {
     const { firstName, lastName, email, phone, password, role } = req.body;
     //Check duplicate email + return 400
     try {
-        const temp = await User.findAll({ where: { email: req.body.email } });
+        const temp = await User.findAll({ where: {email: req.body.email} });
         if (temp.length > 0) return res.status(400).send('User already registered.');
         //encrypt password
         // const salt = await bcrypt.genSalt(10);
         // password = await bcrypt.hash(req.body.password, salt);
         //Save user in DB
-        role=2;
+        // role=2;
       const  user = await User.create({ firstName, lastName, email, phone, password, role });
-
+     const userId=user.id;
+     const department="bf70a160-feba-401c-ac96-34ee6b1dd05e";
+        const employee=await Employee.create({userId,department})
   const token =await generateAuthToken(email,role);
         // //send data to client
         res.header('x-auth-token', token).send(user);
@@ -130,7 +134,6 @@ router.post('/employee',admin, async (req, res) => {
         console.log(error);
         res.status(500).send(error)
     }        // //generate auth token
-  
 });
 /**
  *

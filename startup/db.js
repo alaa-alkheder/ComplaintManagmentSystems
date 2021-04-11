@@ -11,5 +11,6 @@ const {sequelize} = require('../models');
 module.exports =async function() {
      
 await sequelize.authenticate();
+// await sequelize.sync();
 console.log('database Connected!');
 }
