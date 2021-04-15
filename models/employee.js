@@ -9,14 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({User}) {
+    static associate({User,Department}) {
       // define association here
       this.belongsTo(User,{foreignKey:'userId'});
+      this.belongsTo(Department,{foreignKey:'department'});
 
     }
   };
   Employee.init({
-    department: DataTypes.UUID
+    department: {type:DataTypes.INTEGER,},
+        block:  {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+    },
   }, {
     sequelize,
     tableName:'employee',

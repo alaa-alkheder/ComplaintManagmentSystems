@@ -1,31 +1,30 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('Employees', {
+    await queryInterface.createTable('Departments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      UUID: {
-        type: DataTypes.UUID,
-       defaultValue:DataTypes.UUIDV4
-      },
-      userId:{
-        type: DataTypes.INTEGER,
-        allowNull:false
-      },
-      department: {
-        type: DataTypes.INTEGER
-      },
+      name: {
+        type: DataTypes.STRING
+      }
+      ,
+    supervisor: {
+      type: DataTypes.STRING
+    },
+    parent: {
+      type: DataTypes.INTEGER
+    },
+    block:  {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+    },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE
-      },
-      block:  {
-        type: DataTypes.BOOLEAN,
-        defaultValue:false
       },
       updatedAt: {
         allowNull: false,
@@ -34,6 +33,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, DataTypes) => {
-    await queryInterface.dropTable('Employees');
+    await queryInterface.dropTable('Departments');
   }
 };

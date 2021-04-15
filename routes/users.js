@@ -10,6 +10,7 @@ const { validate } = require('../validation/userValidate');
 const {generateAuthToken} = require('../JWT/token');
 const { User } = require('../models');
 const { Employee } = require('../models');
+const { Department } = require('../models');
 
 
 
@@ -45,7 +46,12 @@ router.get('/:email',async (req, res) => {
             where: {
                 email: req.params.email
             },
-            include:[Employee]
+            include:[{
+                model:Employee,
+                include: [{
+                    model: Department,
+                  }],
+            }]
         });
         //send data to client
         res.json({ user });
@@ -125,7 +131,7 @@ router.post('/employee', async (req, res) => {
         // role=2;
       const  user = await User.create({ firstName, lastName, email, phone, password, role });
      const userId=user.id;
-     const department="bf70a160-feba-401c-ac96-34ee6b1dd05e";
+     const department="1"
         const employee=await Employee.create({userId,department})
   const token =await generateAuthToken(email,role);
         // //send data to client
@@ -134,6 +140,7 @@ router.post('/employee', async (req, res) => {
         console.log(error);
         res.status(500).send(error)
     }        // //generate auth token
+
 });
 /**
  *

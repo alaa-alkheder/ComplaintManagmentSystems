@@ -44,9 +44,9 @@ router.post('/customer', async (req, res) => {
   if (!user) return res.status(400).send('Invalid email.');
   // const validPassword = await bcrypt.compare(req.body.password, user.password);
   // if (!validPassword) return res.status(400).send('Invalid email or password.');
-  // if (!(req.body.password===user.password)) return res.status(400).send('Invalid  password.');
+  if (!(req.body.password===user.password)) return res.status(400).send('Invalid  password.');
   //check the role
-  if (user.role != 3) return res.status(400).send('you do not have admin access.');
+  // if (user.role != 3) return res.status(400).send('you do not have admin access.');
 
   const token = await generateAuthToken(user.email, user.role);
   res.header('x-auth-token', token).send(user);
