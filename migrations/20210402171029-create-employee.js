@@ -16,6 +16,10 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull:false
       },
+      role:  {
+        type: DataTypes.INTEGER,
+        allowNull:false
+      },
       department: {
         type: DataTypes.INTEGER
       },

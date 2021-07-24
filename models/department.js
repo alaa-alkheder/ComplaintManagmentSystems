@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING
     },
+    // complaint_form: {
+    //   type: DataTypes.STRING,
+    //   allowNull:false
+    // },
     supervisor: {
       type: DataTypes.STRING
     },

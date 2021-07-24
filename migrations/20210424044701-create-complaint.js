@@ -1,30 +1,26 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('Departments', {
+    await queryInterface.createTable('Complaints', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      name: {
-        type: DataTypes.STRING
+      userId: {
+        type: DataTypes.INTEGER
+      },  
+      status: {
+        type: DataTypes.INTEGER
       },
-      // complaint_form: {
-      //   type: DataTypes.STRING,
-      //   allowNull:false
-      // },
-    supervisor: {
-      type: DataTypes.STRING
-    },
-    parent: {
-      type: DataTypes.INTEGER
-    },
-    block:  {
-      type: DataTypes.BOOLEAN,
-      defaultValue:false
-    },
+      data: {
+        type: DataTypes.JSON
+      },
+      flow: {
+        type:DataTypes.JSON,
+        allowNull:false
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE
@@ -36,6 +32,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, DataTypes) => {
-    await queryInterface.dropTable('Departments');
+    await queryInterface.dropTable('Complaints');
   }
 };

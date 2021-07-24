@@ -1,4 +1,4 @@
-/*
+
 const winston = require('winston');
 
 module.exports = function(err, req, res, next){
@@ -10,6 +10,6 @@ module.exports = function(err, req, res, next){
   // verbose
   // debug 
   // silly
-
+    console.log("!!!!!!"+err)
   res.status(500).send('Something failed.');
-}*/
+}

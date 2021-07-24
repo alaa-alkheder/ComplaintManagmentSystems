@@ -1,10 +1,11 @@
 module.exports = function (handler) {
-  return async (req, res, next) => {
-    try {
-      await handler(req, res);
-    }
-    catch(ex) {
-      next(ex);
-    }
-  };  
+  // return async (req, res, next) => {
+  //   try {
+  //     console.log("@@@@@@@@@")
+  //     await handler(req, res);
+  //   }
+  //   catch(ex) {
+  //     next(ex);
+  //   }
+  // };
 }
