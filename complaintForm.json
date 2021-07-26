@@ -1,0 +1,15 @@
+{
+  "name" : "ComplaintName",
+  "type" : "Complaint Type",
+  "Department":"Department Name",
+  "signed" : "true",
+
+
+  "form" : {
+    "user ID" : {"type":"String","required": "true"},
+    "doc ID": {"type":"String","required": "false"},
+    "Date"  : {"type":"date","required": "true"},
+    "photo" : {"type":"img","required": "true"},
+    "gender": {"type":"radio","required": "true","value": ["male","female"]}
+  }
+}

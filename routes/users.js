@@ -140,7 +140,7 @@ router.post('/employee', async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).send(error);
-    }        // //generate auth token
+    }       //generate auth token
 
 });
 /**

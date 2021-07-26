@@ -28,6 +28,14 @@ router.get('/employee/:dep/:role',async (req,res)=>{
    res.status(200).send(comp)
 });
 
+router.post('/customer/add',async (req,res)=>{
+   const {userId,data}=req.body;
+   const status=1;
+   const flow={"dep":""};
+   const comp=await Complaint.create({userId,data,status,flow});
+   res.status(200).send(comp)
+});
+
 
 
 module.exports = router;
