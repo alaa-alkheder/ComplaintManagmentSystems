@@ -10,6 +10,17 @@ router.get('/all', async (req, res,next) => {
         // throw new Error('BROKEN')
         res.status(200).send(f)
 });
+router.get('/customer/all', async (req, res,next) => {
+        const f=await form.findAll({where:{type:"3"}});
+        // throw new Error('BROKEN')
+        res.status(200).send(f)
+});
+
+router.get('/employee/all', async (req, res,next) => {
+        const f=await form.findAll({where:{type:"2"}});
+        // throw new Error('BROKEN')
+        res.status(200).send(f)
+});
 /**
  * add new form to DB
  */

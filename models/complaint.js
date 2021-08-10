@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         data: {
             type: DataTypes.JSON
         },
+        form: {
+            type: DataTypes.INTEGER
+        },
+        type: {
+            type: DataTypes.STRING
+        },
         status: {
             type: DataTypes.INTEGER
         },

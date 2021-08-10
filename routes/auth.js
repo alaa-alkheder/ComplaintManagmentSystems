@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 const { generateAuthToken } = require('../JWT/token');
 
-router.post('/admin', async (req, res) => {
+router.post('/admin' ,async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   console.log("!!!!!!!!!" + req.body.email);
@@ -21,9 +21,10 @@ router.post('/admin', async (req, res) => {
   res.header('x-auth-token', token).send(user);
 });
 router.post('/employ', async (req, res) => {
+  res.set({"Access-Control-Allow-Origin": "*","Access-Control-Allow-Methods": "*","Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",});
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  console.log("!!!!!!!!!" + req.body.email);
+  // console.log("!!!!!!!!!" + req.body.email);
   let user = await User.findOne({ where: { email: req.body.email } });
   if (!user) return res.status(400).send('Invalid email.');
   // const validPassword = await bcrypt.compare(req.body.password, user.password);

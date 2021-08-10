@@ -17,6 +17,12 @@ module.exports = {
       data: {
         type: DataTypes.JSON
       },
+      form: {
+        type: DataTypes.INTEGER
+      },
+      type: {
+        type: DataTypes.STRING
+      },
       flow: {
         type:DataTypes.JSON,
         allowNull:false

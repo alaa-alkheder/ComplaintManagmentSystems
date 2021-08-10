@@ -9,12 +9,23 @@ const router = express.Router();
 const { validate } = require('../validation/userValidate');
 const {generateAuthToken} = require('../JWT/token');
 const { Complaint } = require('../models');
-const Op = require('Sequelize').Op;
+// const Op = require('Sequelize').Op;
 
-    //todo add router
-router.get('/all',async (req,res)=>{
-   const comp=await Complaint.findAll();
-    console.log(comp)
+
+router.get('/customer/all',async (req,res)=>{
+
+const comp=await Complaint.findAll({where:{type:"3"}});
+    // console.log(comp)
+   res.status(200).send(comp)
+});
+router.get('/:id',async (req,res)=>{
+const comp=await Complaint.findAll({where:{userId:req.params.id}});
+    // console.log(comp)
+   res.status(200).send(comp)
+});
+router.get('/employee/all',async (req,res)=>{
+   const comp=await Complaint.findAll({where:{type:"2"}});
+    // console.log(comp)
    res.status(200).send(comp)
 });
 
@@ -32,10 +43,18 @@ router.post('/customer/add',async (req,res)=>{
    const {userId,data}=req.body;
    const status=1;
    const flow={"dep":""};
-   const comp=await Complaint.create({userId,data,status,flow});
+   const type="3"
+   const comp=await Complaint.create({userId,data,status,flow,type});
    res.status(200).send(comp)
 });
 
-
+router.post('/employee/add',async (req,res)=>{
+   const {userId,data}=req.body;
+   const status=1;
+   const flow={"dep":""};
+   const type="2"
+   const comp=await Complaint.create({userId,data,status,flow,type});
+   res.status(200).send(comp)
+});
 
 module.exports = router;

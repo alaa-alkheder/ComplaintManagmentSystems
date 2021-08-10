@@ -12,6 +12,9 @@ const { Department } = require('../models');
 // const { Employee } = require('../models');
 router.get('/all' ,async (req, res) => {
     try {
+        // console.log(req)
+        // console.log("****************************************************************")
+        res.set({"Access-Control-Allow-Origin": "*","Access-Control-Allow-Methods": "*","Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",});
         const dep = await Department.findAll();
         res.json({ dep });
     } catch (error) {
