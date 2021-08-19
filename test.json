@@ -1,18 +1,37 @@
 {
   "step": "3",
-  "step1": {
-    "dep": "4",
-    "role": "1",
-    "note": {}
-  },
-  "step2": {
-    "dep": "3",
-    "role": "3",
-    "note": {}
-  },
-  "step3": {
-    "dep": "2",
-    "role": "5",
-    "note": {}
-  }
+  "currentStep": "1",
+  "currentDep": "",
+  "currentRole": "",
+  "steps": [
+    {
+      "id": "1",
+      "dep": "4",
+      "role": "1",
+      "employee": "email",
+      "date": "date",
+      "status": "int",
+      "note": {
+        "d": "$$$$"
+      }
+    },
+    {
+      "id": "2",
+      "dep": "3",
+      "role": "3",
+      "employee": "email",
+      "date": "date",
+      "status": "int",
+      "note": {}
+    },
+    {
+      "id": "3",
+      "dep": "2",
+      "role": "5",
+      "employee": "email",
+      "date": "date",
+      "status": "int",
+      "note": {}
+    }
+  ]
 }

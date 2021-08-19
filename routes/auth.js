@@ -49,7 +49,8 @@ router.post('/customer', async (req, res) => {
   // if (user.role != 3) return res.status(400).send('you do not have admin access.');
 
   const token = await generateAuthToken(user.email, user.role);
-  res.header('x-auth-token', token).send(user);
+
+  res.header('x-auth-token', token).send({'token':token,'data':user});
 });
 function validate(req) {
   const schema = {
