@@ -1,37 +1,28 @@
-{
-  "step": "3",
-  "currentStep": "1",
-  "currentDep": "",
-  "currentRole": "",
-  "steps": [
-    {
-      "id": "1",
-      "dep": "4",
-      "role": "1",
-      "employee": "email",
-      "date": "date",
-      "status": "int",
-      "note": {
-        "d": "$$$$"
+  {
+    "step": "2",
+    "currentStep": "2",
+    "currentDep": "2",
+    "currentRole": "3",
+    "steps": [
+      {
+        "valid": "true",
+        "id": "1",
+        "dep": "4",
+        "role": "1",
+        "employee": "mia",
+        "date": "date",
+        "status": "1",
+        "note": "fuck project"
+      },
+      {
+        "valid": "false",
+        "id": 2,
+        "dep": "2",
+        "role": "3",
+        "employee": "employee4@cms.sy",
+        "date": "date",
+        "status": 1,
+        "note": "loloblolo"
       }
-    },
-    {
-      "id": "2",
-      "dep": "3",
-      "role": "3",
-      "employee": "email",
-      "date": "date",
-      "status": "int",
-      "note": {}
-    },
-    {
-      "id": "3",
-      "dep": "2",
-      "role": "5",
-      "employee": "email",
-      "date": "date",
-      "status": "int",
-      "note": {}
-    }
-  ]
-}
+    ]
+  }

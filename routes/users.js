@@ -81,7 +81,7 @@ router.post('/customer', async (req, res) => {
 
         const token = await generateAuthToken(email, role);
         // //send data to client
-        res.header('x-auth-token', token).send(user);
+        res.header('x-auth-token', token).send({'token':token,'data':user});
     } catch (error) {
         console.log(error);
         res.status(500).send(error)

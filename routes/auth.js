@@ -1,4 +1,5 @@
 const Joi = require('joi');
+var cors = require('cors')
 // const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const { User } = require('../models');
@@ -20,8 +21,13 @@ router.post('/admin' ,async (req, res) => {
   const token = await generateAuthToken(user.email, user.role);
   res.header('x-auth-token', token).send(user);
 });
-router.post('/employ', async (req, res) => {
-  res.set({"Access-Control-Allow-Origin": "*","Access-Control-Allow-Methods": "*","Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",});
+router.post('/employee', async (req, res) => {
+
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Expose-Headers", "Authorization");
+  res.header("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header,x-auth-token");
+  // res.header(HEADER_STRING, TOKEN_PREFIX + token); // HEADER_STRING == Authorization
+  // res.set({"Access-Control-Allow-Origin": "*","Access-Control-Allow-Methods": "*","Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, x-auth-token'",});
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   // console.log("!!!!!!!!!" + req.body.email);
@@ -34,7 +40,10 @@ router.post('/employ', async (req, res) => {
   if (user.role != 2) return res.status(400).send('you do not have admin access.');
 
   const token = await generateAuthToken(user.email, user.role);
-  res.header('x-auth-token', token).send(user);
+  res.set('x-auth-token', token)
+  // console.log(res.header.)
+
+  res.send({'token':token,'user':user});
 });
 router.post('/customer', async (req, res) => {
   // console.log("!!!!!!!!!" + req.body.email);

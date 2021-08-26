@@ -6,6 +6,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "config": "^3.3.6",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "joi": "^13.1.0",
@@ -16,6 +17,7 @@
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.5.1",
+    "tedious": "^12.0.0",
     "winston": "^3.3.3",
     "winston-postgres-transport": "^1.2.0"
   },
