@@ -52,14 +52,6 @@ router.get('/my/:id', async (req, res) => {
 
 router.get('/services/get', auth, async (req, res, next) => {
     console.log(req.header('x-auth-token'))
-
-    // req.token=req.params.auth;
-    // auth(req,res,next,req.params.auth)
-    // console.log(req.params.auth)
-    // console.log(req)
-    // response.addHeader("Access-Control-Expose-Headers", "Authorization");
-    // response.addHeader("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header");
-    // response.addHeader(HEADER_STRING, TOKEN_PREFIX + token); // HEADER_STRING == Authorization
     const user = await User.findAll({where: {email: req.token.email}})
     const employee = await Employee.findAll({where: {userId: user[0].id}})
     const comp = await Complaint.findAll({
@@ -95,9 +87,10 @@ router.get('/management/get', auth, async (req, res) => {
 router.post('/customer/add', async (req, res) => {
     const {userId, data} = req.body;
     const status = 1;
+    const form = 1;
     const flow = {"dep": ""};
     const type = "3"
-    const comp = await Complaint.create({userId, data, status, flow, type});
+    const comp = await Complaint.create({userId, data, status, flow, type,form});
     res.status(200).send(comp)
 });
 
@@ -108,7 +101,7 @@ router.post('/management/add',auth, async (req, res) => {
     const status = "1";
     const flow = {"dep": ""};
     const type = "2"
-    const comp = await Complaint.create({userId:'9', data, status, flow, type});
+    const comp = await Complaint.create({userId, data, status, flow, type});
     res.status(200).send(comp)
 });
 

@@ -7,6 +7,7 @@ const department = require('../routes/department');
 const status = require('../routes/status');
 const complaint = require('../routes/complaint');
 const role = require('../routes/role');
+const report = require('../routes/report');
 
 module.exports = function (app) {
     app.use(express.json());
@@ -17,5 +18,6 @@ module.exports = function (app) {
     app.use('/api/status', status);
     app.use('/api/complaint', complaint);
     app.use('/api/role', role);
+    app.use('/api/report', report);
     app.use(error)
 }

@@ -1,2 +1,15 @@
+{"message":"Connected to 1630053686679...","level":"info"}
+{"message":"Connected to 1630053724343...","level":"info"}
+{"message":"Connected to 1630053789225...","level":"info"}
+{"message":"Connected to  ...","level":"info"}
+{"message":"Connected to  ...","level":"info"}
+{"message":"Connected to  ...","level":"info"}
 {"name":"SequelizeDatabaseError","parent":{"length":167,"name":"error","severity":"ERROR","code":"42703","position":"14","file":"d:\\pginstaller_12.auto\\postgres.windows-x64\\src\\backend\\parser\\parse_relation.c","line":"3359","routine":"errorMissingColumn","sql":"SELECT \"id\", \"name\" FROM \"statuses\" AS \"status\";"},"original":{"length":167,"name":"error","severity":"ERROR","code":"42703","position":"14","file":"d:\\pginstaller_12.auto\\postgres.windows-x64\\src\\backend\\parser\\parse_relation.c","line":"3359","routine":"errorMissingColumn","sql":"SELECT \"id\", \"name\" FROM \"statuses\" AS \"status\";"},"sql":"SELECT \"id\", \"name\" FROM \"statuses\" AS \"status\";","level":"error","message":"column \"name\" does not exist column \"name\" does not exist","stack":"SequelizeDatabaseError: column \"name\" does not exist\n    at Query.formatError (C:\\Users\\Eng Alaa Alkheder\\Documents\\GitHub\\ComplaintManagmentSystems\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:386:16)\n    at Query.run (C:\\Users\\Eng Alaa Alkheder\\Documents\\GitHub\\ComplaintManagmentSystems\\node_modules\\sequelize\\lib\\dialects\\postgres\\query.js:87:18)\n    at processTicksAndRejections (internal/process/task_queues.js:86:5)"}
+{"message":"Connected to  ...","level":"info"}
+{"message":"Connected to  ...","level":"info"}
 {"level":"error","message":"Cannot read property 'title' of null Cannot read property 'title' of null","stack":"TypeError: Cannot read property 'title' of null\n    at router.get (C:\\Users\\Eng Alaa Alkheder\\Documents\\GitHub\\ComplaintManagmentSystems\\routes\\complaint.js:30:28)\n    at processTicksAndRejections (internal/process/task_queues.js:86:5)"}
+{"message":"Connected to  ...","level":"info"}
+{"message":"Connected to  ...","level":"info"}
+{"message":"Connected to  ...","level":"info"}
+{"message":"Connected to  ...","level":"info"}
+{"message":"Connected to  ...","level":"info"}

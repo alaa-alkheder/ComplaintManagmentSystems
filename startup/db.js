@@ -1,17 +1,18 @@
 /*
-const winston = require('winston');
+//
 const mongoose = require('mongoose');
 mongoose.connect(db)
-        .then(() => winston.info(`Connected to ${db}...`));
+        .then(() =>
 */
-
+const winston = require('winston');
 
 const {sequelize} = require('../models');
 
 module.exports =async function() {
-     
 await sequelize.authenticate();
 // await sequelize.sync({froce:true});
+//     console.log(ate().getTime())
+winston.info(`Connected to  ...`);
 console.log('database Connected!');
-console.log('******************************************************************************');
+// console.log('******************************************************************************');
 }

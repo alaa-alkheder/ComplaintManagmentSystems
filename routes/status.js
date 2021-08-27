@@ -6,7 +6,7 @@ const asyncMidleware=require('../middleware/async')
  * get all status from DB
  */
 router.get('/all', async (req, res,next) => {
-    const f=await status.findAll();
+    const f=await status.findAll({attributes:['id','status']});
     // throw new Error('BROKEN')
     res.status(200).send(f)
 });
