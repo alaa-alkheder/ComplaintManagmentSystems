@@ -1,28 +1,27 @@
-  {
-    "step": "2",
-    "currentStep": "2",
-    "currentDep": "2",
-    "currentRole": "3",
-    "steps": [
-      {
-        "valid": "true",
-        "id": "1",
-        "dep": "4",
-        "role": "1",
-        "employee": "mia",
-        "date": "date",
-        "status": "1",
-        "note": "fuck project"
-      },
-      {
-        "valid": "false",
-        "id": 2,
-        "dep": "2",
-        "role": "3",
-        "employee": "employee4@cms.sy",
-        "date": "date",
-        "status": 1,
-        "note": "loloblolo"
-      }
-    ]
-  }
+{
+  "step": 2,
+  "currentStep": "2",
+  "currentDep": "2",
+  "currentRole": "4",
+  "steps": [
+    {
+      "id": 1,
+      "valid": "false",
+      "employee": "forward@cms.sy",
+      "date": "",
+      "data": "",
+      "status": "",
+      "dep": "2",
+      "role": "6"
+    },
+    {
+      "id": "2",
+      "dep": "2",
+      "role": "4",
+      "employee": "",
+      "date": "",
+      "status": "",
+      "note": ""
+    }
+  ]
+}

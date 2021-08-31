@@ -10,7 +10,7 @@ module.exports = function (req, res, next) {
   try {
     const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
     req.token = decoded;
-    console.log("+++++++++"+decoded)
+    // console.log("+++++++++"+decoded)
     next();
   }
   catch (ex) {

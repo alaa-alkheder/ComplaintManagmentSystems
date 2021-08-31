@@ -2,10 +2,20 @@ const Joi = require('joi');
 var cors = require('cors')
 // const bcrypt = require('bcrypt');
 const _ = require('lodash');
-const { User } = require('../models');
+const { User,Employee } = require('../models');
 const express = require('express');
 const router = express.Router();
 const { generateAuthToken } = require('../JWT/token');
+
+const redis = require("redis");
+// const client = redis.createClient({"url":"//redis-19028.c282.east-us-mz.azure.cloud.redislabs.com:19028","user":"Admin","password":"369258/Asd"});
+//
+// client.on("error", function(error) {
+//   console.error(error);
+// });
+
+
+
 
 router.post('/admin' ,async (req, res) => {
   const { error } = validate(req.body);
@@ -21,14 +31,9 @@ router.post('/admin' ,async (req, res) => {
   const token = await generateAuthToken(user.email, user.role);
   res.header('x-auth-token', token).send(user);
 });
-router.post('/employee', async (req, res) => {
 
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header("Access-Control-Expose-Headers", "Authorization");
-  res.header("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header,x-auth-token");
-  // res.header(HEADER_STRING, TOKEN_PREFIX + token); // HEADER_STRING == Authorization
-  // res.set({"Access-Control-Allow-Origin": "*","Access-Control-Allow-Methods": "*","Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, x-auth-token'",});
-  const { error } = validate(req.body);
+router.post('/employee', async (req, res) => {
+ const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   // console.log("!!!!!!!!!" + req.body.email);
   let user = await User.findOne({ where: { email: req.body.email } });
@@ -41,10 +46,14 @@ router.post('/employee', async (req, res) => {
 
   const token = await generateAuthToken(user.email, user.role);
   res.set('x-auth-token', token)
+  let role=await Employee.findOne({attributes:['role'], where:{userId:user.id}})
+  user.role=role.role;
   // console.log(res.header.)
-
+  //todo un comment redis save data
+  // client.set(user.email,token);
   res.send({'token':token,'user':user});
 });
+
 router.post('/customer', async (req, res) => {
   // console.log("!!!!!!!!!" + req.body.email);
   const { error } =  validate(req.body);
@@ -61,6 +70,8 @@ router.post('/customer', async (req, res) => {
 
   res.header('x-auth-token', token).send({'token':token,'data':user});
 });
+
+
 function validate(req) {
   const schema = {
     email: Joi.string().min(5).max(255).required().email(),

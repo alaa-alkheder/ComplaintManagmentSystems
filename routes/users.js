@@ -30,6 +30,7 @@ router.get('/me', auth, async (req, res) => {
 
 
 });
+
 router.get('/all', async (req, res) => {
     try {
         const user = await User.findAll();
@@ -40,6 +41,7 @@ router.get('/all', async (req, res) => {
     }
 
 });
+
 router.get('/:email', async (req, res) => {
     try {  //search for user
         const user = await User.findAll({
@@ -62,6 +64,7 @@ router.get('/:email', async (req, res) => {
 
 
 });
+
 router.post('/customer', async (req, res) => {
     //Check validation + return 400
     let {error} = validate(req.body);
@@ -77,7 +80,7 @@ router.post('/customer', async (req, res) => {
         // password = await bcrypt.hash(req.body.password, salt);
         //Save user in DB
         // role=3;
-        const user = await User.create({firstName, lastName, email, phone, password, role});
+        const user = await User.create({firstName, lastName, email, phone, password, role:3});
 
         const token = await generateAuthToken(email, role);
         // //send data to client
@@ -116,6 +119,37 @@ router.post('/admin', admin, async (req, res) => {
 });
 router.post('/employee', async (req, res) => {
     //Check validation + return 400
+    // let {error} = validate(req.body);
+    // if (error) return res.status(400).send(error.details[0].message);
+    //get Data from req.body
+    const {firstName, lastName, email, phone, password, role,department} = req.body;
+    console.log("@@@"+department)
+    //Check duplicate email + return 400
+    try {
+        const temp = await User.findAll({where: {email: req.body.email}});
+        if (temp.length > 0) return res.status(400).send('User already registered.');
+        //encrypt password
+        // const salt = await bcrypt.genSalt(10);
+        // password = await bcrypt.hash(req.body.password, salt);
+        //Save user in DB
+        // role=2;
+        const user = await User.create({firstName, lastName, email, phone, password, role:"2"});
+        const userId = user.id;
+        //TODO ERROR WHEN WE GET THE DEPARTMENT FROM USER
+        // const department = "1";
+
+        const employee = await Employee.create({userId, 'department':department, role});
+        const token = await generateAuthToken(email, role);
+        // //send data to client
+        res.header('x-auth-token', token).send(user);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }       //generate auth token
+
+});
+/*router.post('/employee', async (req, res) => {
+    //Check validation + return 400
     let {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     //get Data from req.body
@@ -142,11 +176,12 @@ router.post('/employee', async (req, res) => {
         res.status(500).send(error);
     }       //generate auth token
 
-});
+});*/
 /**
  *
  * @put {/email}
  */
+
 router.put('/blockUser', async (req, res) => {
     //check email is found
     try {
@@ -167,4 +202,5 @@ router.put('/blockUser', async (req, res) => {
         console.log(error);
     }
 })
+
 module.exports = router;
